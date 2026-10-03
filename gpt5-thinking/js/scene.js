@@ -222,8 +222,8 @@ const SCENES = [
   { amp: .32, freq: 1.3, form: 2, x: 3.2, y: .3, z: 11, scale: .9,  cols: C('#5ef2ff', '#b56cff', '#ffd66b'), bloom: 0.80 },// ch3 performance
   { amp: .2,  freq: 1.0, form: 3, x: -3.2, y: 0, z: 10, scale: .85, cols: C('#3b82ff', '#b56cff', '#ff5ec8'), bloom: 0.70 }, // ch4 tiers
   { amp: .42, freq: 3.2, form: 0, x: 3.2, y: 0,  z: 10, scale: .85, cols: C('#ff5ec8', '#b56cff', '#ffd66b'), bloom: 0.77 }, // ch5 personality drift
-  { amp: .3,  freq: 1.6, form: 1, x: 0, y: -1.8, z: 12, scale: .8,  cols: C('#b56cff', '#5ef2ff', '#ff5ec8'), bloom: 0.73 },// ch6 compare
-  { amp: .26, freq: 1.2, form: 3, x: 3.2, y: 0,  z: 10, scale: .85, cols: C('#5fffb0', '#ffd66b', '#ff7a59'), bloom: 0.80 },// ch7 formula
+  { amp: .3,  freq: 1.6, form: 1, x: 0, y: -3.4, z: 13, scale: .7,  cols: C('#b56cff', '#5ef2ff', '#ff5ec8'), bloom: 0.73 },// ch6 compare
+  { amp: .26, freq: 1.2, form: 3, x: 4.2, y: 1.2, z: 11, scale: .7, cols: C('#5fffb0', '#ffd66b', '#ff7a59'), bloom: 0.80 },// ch7 formula
   { amp: .35, freq: 1.5, form: 2, x: -3.2, y: 0, z: 10, scale: .85, cols: C('#5ef2ff', '#ff5ec8', '#b56cff'), bloom: 0.77 }, // ch8 students
   { amp: .14, freq: .9,  form: 4, x: 3.2, y: 0,  z: 10, scale: .85, cols: C('#5ef2ff', '#b56cff', '#5fffb0'), bloom: 0.70 }, // ch9 trust
   { amp: .6,  freq: 1.4, form: 4, x: 0, y: 0,    z: 8.5, scale: 1.25, cols: C('#5fffb0', '#5ef2ff', '#ff5ec8'), bloom: 1.05 } // conclusion

@@ -20,7 +20,8 @@
   // Japanese-aware chunking: split on punctuation / brackets so lines wrap nicely
   function splitWords(el) {
     const txt = el.textContent; el.textContent = '';
-    const parts = txt.match(/[^：・、。（）「」“”]+[：・、。（）「」“”]*|[：・、。（）「」“”]+/g) || [txt];
+    // opening brackets stick to the following chunk, closing ones/punctuation to the preceding chunk
+    const parts = (txt.match(/[（「“―]*[^：・、。（）「」“”―]*[：・、。）」”―]*/g) || [txt]).filter(Boolean);
     parts.forEach(p => {
       const w = document.createElement('span'); w.className = 'w';
       const i = document.createElement('span'); i.textContent = p;

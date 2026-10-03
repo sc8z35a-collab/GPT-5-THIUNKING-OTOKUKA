@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GPT 5 Thinkingはお得か｜I（評価版レポート）— THINK / VALUE</title>
+<meta name="description" content="高校生読者のための「コスパ（COST–PERFORMANCE）」徹底検証。GPT‑5 Thinkingは本当に“お得”なのかを、全9章＋結論で解説する評価版レポートのインタラクティブ版。">
+<meta name="theme-color" content="#05060d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Unbounded:wght@400;600;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+} }
+</script>
+</head>
+<body class="is-loading">
+
+<!-- ================= LOADER ================= -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader__core">
+    <div class="loader__ring"></div><div class="loader__ring r2"></div><div class="loader__ring r3"></div>
+    <div class="loader__num mono"><span id="loaderNum">000</span><small>%</small></div>
+  </div>
+  <p class="loader__label mono">THINKING BEFORE ANSWERING<span class="dots"></span></p>
+</div>
+
+<!-- ================= WEBGL ================= -->
+<canvas id="webgl" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true"><span></span></div>
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+<!-- ================= HUD ================= -->
+<header class="hud">
+  <a href="#top" class="hud__logo" data-magnetic>
+    <span class="logo-orb"></span><span>THINK<i>/</i>VALUE</span>
+  </a>
+  <div class="hud__chapter mono"><span id="hudIdx">00</span><span class="sep">—</span><span id="hudName">PROLOGUE</span></div>
+  <div class="hud__progress mono"><span id="hudPct">000</span>%</div>
+  <button class="hud__menu" id="menuBtn" aria-label="目次を開く" aria-expanded="false" data-magnetic><span></span><span></span></button>
+  <div class="progress-line"><i id="progressBar"></i></div>
+</header>
+
+<nav class="toc" id="toc" aria-label="目次">
+  <div class="toc__inner">
+    <p class="mono toc__head">INDEX / 目次</p>
+    <ol>
+      <li><a href="#intro"><span class="mono">00</span>はじめに：本レポートのねらいと「お得」の定義</a></li>
+      <li><a href="#ch1"><span class="mono">01</span>GPT‑5と「Thinking」の全体像</a></li>
+      <li><a href="#ch2"><span class="mono">02</span>Thinkingの仕組みをかみ砕く</a></li>
+      <li><a href="#ch3"><span class="mono">03</span>性能の実相</a></li>
+      <li><a href="#ch4"><span class="mono">04</span>料金・アクセス・レート制限の基礎知識</a></li>
+      <li><a href="#ch5"><span class="mono">05</span>ユーザー体験と“性格”の揺れ</a></li>
+      <li><a href="#ch6"><span class="mono">06</span>前世代・代替との比較</a></li>
+      <li><a href="#ch7"><span class="mono">07</span>「お得」を数式で直観する</a></li>
+      <li><a href="#ch8"><span class="mono">08</span>高校生読者の視点からの考察</a></li>
+      <li><a href="#ch9"><span class="mono">09</span>リスク・限界・倫理</a></li>
+      <li><a href="#conclusion"><span class="mono">∞</span>結論：GPT‑5 Thinkingは「お得」か？</a></li>
+    </ol>
+  </div>
+</nav>
+
+<aside class="rail" aria-hidden="true"><ul id="rail"></ul></aside>
+
+<main id="smooth">
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top" data-scene="0" data-name="PROLOGUE">
+  <div class="hero__meta mono">
+    <span>EVALUATION REPORT</span><span>VOL. I</span><span>FOR HIGH SCHOOL READERS</span>
+  </div>
+  <h1 class="hero__title" aria-label="GPT 5 Thinkingはお得か｜I（評価版レポート）">
+    <span class="hero__l1 split">GPT 5</span>
+    <span class="hero__l2 split">Thinking</span>
+    <span class="hero__l3"><span class="split">はお得か</span><span class="bar">｜</span><span class="split">I</span></span>
+  </h1>
+  <p class="hero__badge mono"><span>（評価版レポート）</span></p>
+  <p class="hero__sub split-lines">――高校生読者のための「コスパ（COST–PERFORMANCE）」徹底検証――</p>
+  <div class="hero__equation mono" aria-hidden="true">
+    <span>TOTAL VALUE</span><b>=</b><span class="c-ben">BENEFIT</span><b>−</b><span class="c-cost">COST</span>
+  </div>
+  <a href="#intro" class="scroll-cue mono" data-magnetic><span class="scroll-cue__line"></span>SCROLL TO THINK</a>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track mono">
+    <span>THINK BEFORE ANSWERING</span><span>✦</span><span>SYSTEM OF MODELS</span><span>✦</span><span>TEST‑TIME COMPUTE</span><span>✦</span><span>VALUE IS CONTEXT‑DEPENDENT</span><span>✦</span><span>THINKING COSTS TIME, BUT BUYS RELIABILITY</span><span>✦</span><span>TRUST = TECHNOLOGY × HABITS</span><span>✦</span>
+    <span>THINK BEFORE ANSWERING</span><span>✦</span><span>SYSTEM OF MODELS</span><span>✦</span><span>TEST‑TIME COMPUTE</span><span>✦</span><span>VALUE IS CONTEXT‑DEPENDENT</span><span>✦</span><span>THINKING COSTS TIME, BUT BUYS RELIABILITY</span><span>✦</span><span>TRUST = TECHNOLOGY × HABITS</span><span>✦</span>
+  </div>
+</div>
+
+<!-- ================= INTRO ================= -->
+<section class="chapter" id="intro" data-scene="1" data-name="INTRODUCTION">
+  <header class="ch-head">
+    <p class="ch-num mono" data-num="00">INTRODUCTION</p>
+    <h2 class="ch-title split-lines">はじめに：本レポートのねらいと「お得」の定義</h2>
+  </header>
+  <div class="ch-grid">
+    <div class="ch-text reveal">
+      <p>本稿は、ChatGPTに搭載された最新世代モデル「GPT‑5」と、その深い推論を行う「GPT‑5 Thinking（以下、Thinking）」が<strong>本当に“お得（VALUE FOR MONEY）”と言えるのか</strong>を、一般ユーザー視点、とくに高校生読者のリテラシー水準を前提に、丁寧に解像度高く検証する長篇の評価レポートである。ここでいう「お得」は、<strong data-hl="cost">COST（料金・待ち時間・学習コスト・失敗による手戻り）</strong>と<strong data-hl="ben">BENEFIT（正確さ・一貫性・再現性・難問の解決率・作品や学習の品質向上）</strong>の釣り合いで決まる。<strong>PRICEだけがすべてではない。</strong>速さ・精度・安全性・将来性といった、目に見えにくい価値も含めて総合で判断することが重要だ。</p>
+    </div>
+    <div class="ch-visual reveal">
+      <div class="balance" id="balance" data-tilt>
+        <p class="widget-label mono">INTERACTIVE ／ 天秤にのせてみよう</p>
+        <div class="balance__stage">
+          <div class="balance__beam" id="beam">
+            <div class="pan pan--cost"><span class="mono">COST</span><div class="pan__stack" id="costStack"></div></div>
+            <div class="pan pan--ben"><span class="mono">BENEFIT</span><div class="pan__stack" id="benStack"></div></div>
+          </div>
+          <div class="balance__pivot"></div>
+        </div>
+        <div class="balance__chips">
+          <div class="chips chips--cost">
+            <button class="chip" data-side="cost">料金</button><button class="chip" data-side="cost">待ち時間</button><button class="chip" data-side="cost">学習コスト</button><button class="chip" data-side="cost">失敗による手戻り</button>
+          </div>
+          <div class="chips chips--ben">
+            <button class="chip" data-side="ben">正確さ</button><button class="chip" data-side="ben">一貫性</button><button class="chip" data-side="ben">再現性</button><button class="chip" data-side="ben">難問の解決率</button><button class="chip" data-side="ben">作品や学習の品質向上</button>
+          </div>
+        </div>
+        <p class="widget-note">各要素をタップして天秤にのせる／外す。<br>「お得」は COST と BENEFIT の<em>釣り合い</em>で決まる。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CH1 ================= -->
+<section class="chapter" id="ch1" data-scene="2" data-name="SYSTEM OF MODELS">
+  <header class="ch-head">
+    <p class="ch-num mono" data-num="01">CHAPTER 01</p>
+    <h2 class="ch-title split-lines">第1章：GPT‑5と「Thinking」の全体像</h2>
+  </header>
+  <div class="ch-grid">
+    <div class="ch-text reveal">
+      <p>GPT‑5は、従来の「ひとつの万能モデル」ではなく、<strong>状況に応じて最適な処理スタイルを切り替える“システム・オブ・モデルズ（SYSTEM OF MODELS）”</strong>という設計思想で説明されることが多い。ChatGPTのモデル選択画面や自動判定（AUTO）により、<strong data-hl="fast">素早い応答を優先する経路（INSTANT/FAST）</strong>と、<strong data-hl="think">より長く考える経路（THINKING）</strong>を切り替える。Thinkingは、難しい課題や文脈が複雑な質問のときに、<strong>「答える前に考える（THINK BEFORE ANSWERING）」</strong>時間を意図的に増やす。結果として、推論の飛躍や早合点（HASTY GENERALIZATION）を下げ、<strong>正答率や一貫性を底上げする</strong>ことが目的である。</p>
+      <p>この切り替えは、ユーザーが明示的に「Thinking」を選ぶ場合もあれば、<strong>AUTOが“必要と判断したときだけ”Thinkingを発動させる</strong>場合もある。後者は、ユーザー側の操作負担を減らしつつ、<strong>必要なときだけCOMPUTE（計算資源）を多めに使う</strong>発想だ。<strong>DELIBERATION（熟考）とLATENCY（待ち時間）のトレードオフ</strong>を自動で最適化する方向、と理解してよい。</p>
+    </div>
+    <div class="ch-visual reveal">
+      <div class="router" data-tilt>
+        <p class="widget-label mono">SIMULATOR ／ AUTO ルーティング</p>
+        <div class="router__q" id="routerQ">
+          <button class="qbtn is-active" data-route="fast">軽い質問</button>
+          <button class="qbtn" data-route="think">難しい課題</button>
+          <button class="qbtn" data-route="think">文脈が複雑な質問</button>
+        </div>
+        <svg class="router__svg" viewBox="0 0 400 260" aria-hidden="true">
+          <defs>
+            <linearGradient id="gFast" x1="0" x2="1"><stop offset="0" stop-color="#5ef2ff"/><stop offset="1" stop-color="#3b82ff"/></linearGradient>
+            <linearGradient id="gThink" x1="0" x2="1"><stop offset="0" stop-color="#b56cff"/><stop offset="1" stop-color="#ff5ec8"/></linearGradient>
+            <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+          <path id="pathFast" class="rpath rpath--fast" d="M60 130 C140 130 160 60 340 60"/>
+          <path id="pathThink" class="rpath rpath--think" d="M60 130 C120 130 130 200 180 200 C210 200 215 170 235 170 C255 170 255 215 280 215 C305 215 310 200 340 200"/>
+          <circle class="rnode" cx="60" cy="130" r="22"/><text x="60" y="134" class="rtxt">AUTO</text>
+          <circle class="rnode rnode--fast" cx="340" cy="60" r="22"/><text x="340" y="64" class="rtxt">FAST</text>
+          <circle class="rnode rnode--think" cx="340" cy="200" r="22"/><text x="340" y="204" class="rtxt">THINK</text>
+          <circle id="packet" r="7" cx="60" cy="130" filter="url(#glow)" fill="#fff"/>
+        </svg>
+        <div class="router__readout mono">
+          <div><span>ROUTE</span><b id="rRoute">INSTANT/FAST</b></div>
+          <div><span>DELIBERATION</span><i class="meter"><em id="rDelib"></em></i></div>
+          <div><span>LATENCY</span><i class="meter"><em id="rLat"></em></i></div>
+        </div>
+        <p class="widget-note">AUTOは“必要と判断したときだけ”Thinkingを発動させる。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CH2 ================= -->
+<section class="chapter" id="ch2" data-scene="3" data-name="INTERNAL CHAIN‑OF‑THOUGHT">
+  <header class="ch-head">
+    <p class="ch-num mono" data-num="02">CHAPTER 02</p>
+    <h2 class="ch-title split-lines">第2章：Thinkingの仕組みをかみ砕く（内部思考とテスト時計算）</h2>
+  </header>
+  <div class="ch-grid ch-grid--rev">
+    <div class="ch-text reveal">
+      <p>Thinkingのコアは、モデルが<strong>回答生成の直前に行う「内部思考（INTERNAL CHAIN‑OF‑THOUGHT）」</strong>である。これは人間で言えば「下書き」「式変形」「仮説検証メモ」に近い。一般ユーザーにはその長文の思考過程は見えないが、モデル側では<strong>段階的に問題を分解（STEP‑BY‑STEP DECOMPOSITION）</strong>し、<strong>根拠を整える（EVIDENCE ALIGNMENT）</strong>作業を行う。さらに近年の設計では、<strong>TEST‑TIME COMPUTE（テスト時計算／推論時の計算を可変に増やす技法）</strong>が導入され、<strong>やや時間をかける代わりに精度を上げる</strong>アプローチが採られる。要するに、<strong>「時間＝推論パワー」</strong>であり、<strong>「速いけど浅い」VS「遅いけど深い」</strong>を必要に応じて切り替えるイメージだ。</p>
+      <p>高校生向けに極端に単純化すると、Thinkingは<strong>「考えごと用の下書きノートに、式やアイデアを書き散らしてから清書する」</strong>に近い。清書（最終出力）だけを見るよりも、下書きの段階でミスに気づけるため、<strong>難問ほどメリットが効く</strong>。一方で、<strong data-hl="cost">待ち時間</strong>や消費する<strong data-hl="cost">計算資源（＝間接的なコスト）</strong>は増える。この<strong>DEEPER REASONING = MORE COST</strong>の関係は、価値判断の核心になる。</p>
+    </div>
+    <div class="ch-visual reveal">
+      <div class="notebook" data-tilt>
+        <p class="widget-label mono">METAPHOR ／ 下書きノート → 清書</p>
+        <div class="notebook__pages">
+          <div class="page page--draft">
+            <span class="page__tag mono">下書き（見えない）</span>
+            <ol class="draft-lines" id="draftLines">
+              <li>問題を分解する … STEP 1</li>
+              <li>式変形を試す … STEP 2</li>
+              <li>仮説を立てる → 検証メモ</li>
+              <li class="strike">早合点 → ✕ ミスに気づく</li>
+              <li>根拠を整える（EVIDENCE ALIGNMENT）</li>
+            </ol>
+          </div>
+          <div class="page page--final">
+            <span class="page__tag mono">清書（最終出力）</span>
+            <p class="final-out" id="finalOut">—</p>
+          </div>
+        </div>
+        <div class="tt-slider">
+          <label class="mono" for="ttc">TEST‑TIME COMPUTE</label>
+          <input type="range" id="ttc" min="0" max="100" value="25">
+          <div class="tt-bars mono">
+            <div><span>推論の深さ</span><i class="meter"><em id="mDepth"></em></i></div>
+            <div><span>待ち時間</span><i class="meter meter--cost"><em id="mWait"></em></i></div>
+          </div>
+          <p class="tt-mode mono" id="ttMode">速いけど浅い</p>
+        </div>
+        <p class="widget-note">「時間＝推論パワー」。スライダーで「速いけど浅い」VS「遅いけど深い」を体感。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CH3 ================= -->
+<section class="chapter" id="ch3" data-scene="4" data-name="PERFORMANCE">
+  <header class="ch-head">
+    <p class="ch-num mono" data-num="03">CHAPTER 03</p>
+    <h2 class="ch-title split-lines">第3章：性能の実相（コーディング・数理・ヘルス分野の報告）</h2>
+  </header>
+  <div class="ch-grid">
+    <div class="ch-text reveal">
+      <p>公開情報では、GPT‑5は<strong>コーディング、数学、学術的文章生成、ヘルス領域、視覚理解（VISUAL PERCEPTION）</strong>などで前世代を上回るとされる。Thinking経路では、<strong>段取りの必要な長手順課題や、数学・プログラムのバグ潰し、長文の整合性</strong>といった領域で<strong>「効く」</strong>傾向が報告されやすい。とりわけ<strong>長いタスクを一貫して遂行する「エージェント的作業（AGENTIC TASKS）」</strong>では、<strong data-hl="ben">思考時間の追加＝手戻り削減</strong>として価値が現れやすい。</p>
+      <p>また、安全性面では<strong>SAFE‑COMPLETIONS</strong>という新しい学習方針が導入され、<strong>「ただ断る（HARD REFUSAL）」だけでなく、ポリシーの範囲内で最大限役に立つ</strong>方向が模索されている。これにより、<strong>有害性（HARMFULNESS）の低減</strong>と<strong>有用性（HELPFULNESS）の両立</strong>が目標になる。とはいえ、<strong>評価ベンチマークやユーザー体験は常に揺れ動く</strong>。ローンチ直後は<strong>“性格（PERSONALITY）”</strong>や<strong>会話の雰囲気</strong>に関する賛否も目立つため、<strong>PERCEPTION（印象）とCAPABILITY（能力）を切り分けて</strong>読む姿勢が大切だ。</p>
+    </div>
+    <div class="ch-visual reveal">
+      <div class="orbit-wrap" data-tilt>
+        <p class="widget-label mono">3D ／ 前世代を上回るとされる領域</p>
+        <div class="orbit" id="orbit">
+          <div class="orbit__core"><span class="mono">GPT‑5</span></div>
+          <div class="orbit__ring">
+            <span class="orb-item">コーディング</span>
+            <span class="orb-item">数学</span>
+            <span class="orb-item">学術的文章生成</span>
+            <span class="orb-item">ヘルス領域</span>
+            <span class="orb-item">視覚理解<small>VISUAL PERCEPTION</small></span>
+          </div>
+        </div>
+        <div class="think-effect">
+          <p class="mono sm-label">THINKING経路で「効く」傾向</p>
+          <ul class="tags">
+            <li>段取りの必要な長手順課題</li><li>数学・プログラムのバグ潰し</li><li>長文の整合性</li><li>AGENTIC TASKS</li>
+          </ul>
+        </div>
+        <div class="safe-toggle">
+          <p class="mono sm-label">SAFETY APPROACH</p>
+          <div class="seg" id="safeSeg">
+            <button data-v="hard">HARD REFUSAL</button>
+            <button data-v="safe" class="is-active">SAFE‑COMPLETIONS</button>
+          </div>
+          <p class="safe-out" id="safeOut"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CH4 ================= -->
+<section class="chapter" id="ch4" data-scene="5" data-name="PRICING & LIMITS">
+  <header class="ch-head">
+    <p class="ch-num mono" data-num="04">CHAPTER 04</p>
+    <h2 class="ch-title split-lines">第4章：料金・アクセス・レート制限の基礎知識（高校生にもわかる範囲で）</h2>
+  </header>
+  <div class="ch-grid ch-grid--rev">
+    <div class="ch-text reveal">
+      <p>ChatGPTの料金は、<strong>FREE</strong>（無料）／<strong>PLUS</strong>（個人向け有料）／<strong>PRO</strong>（高価な個人向け上位）／<strong>BUSINESS/ENTERPRISE/EDU</strong>（組織向け）という層で整理されることが多い。<strong>GPT‑5そのものは広いプランで使える</strong>が、<strong>Thinkingは「回数やクレジットの枠」に影響を受ける</strong>設計が一般的で、<strong>長く考えるほど“高価なモード”</strong>として扱われる。実際の表示や名称は時期や地域、プランの改定で変わりうるが、<strong>「Thinking＝リソースを多く使う＝上位プランで枠が厚い／別枠消費」</strong>という<strong>大枠の理解</strong>は、高校生にも覚えやすい指標になる。</p>
+      <p>重要なのは、<strong>PRICE（支払い金額）だけでなく、RATE LIMITS（回数制限）とCREDITS（機能ごとの消費枠）</strong>を<strong>同時に</strong>見ることだ。<strong>同じ月額でも“どれだけThinkingを回せるか”が実質的な価値</strong>になる。さらに、<strong>AUTOで必要時のみThinkingに切り替わる</strong>設計は、<strong data-hl="ben">無駄撃ちを抑えて実質コストを下げる</strong>一方、<strong data-hl="cost">重い課題では待ち時間が伸びる</strong>可能性がある。<strong>TIME＝HIDDEN COST（隠れコスト）</strong>であることも、価値判断には欠かせない。</p>
+    </div>
+    <div class="ch-visual reveal">
+      <div class="tiers" data-tilt>
+        <p class="widget-label mono">3D STACK ／ プランの層（概念図）</p>
+        <div class="tiers__stage">
+          <div class="tier t4" data-tier="BUSINESS/ENTERPRISE/EDU" data-desc="組織向け"><span>BUSINESS / ENTERPRISE / EDU</span></div>
+          <div class="tier t3" data-tier="PRO" data-desc="高価な個人向け上位"><span>PRO</span></div>
+          <div class="tier t2" data-tier="PLUS" data-desc="個人向け有料"><span>PLUS</span></div>
+          <div class="tier t1" data-tier="FREE" data-desc="無料"><span>FREE</span></div>
+        </div>
+        <p class="tier-out mono" id="tierOut">層にカーソルを合わせる</p>
+        <div class="lenses">
+          <p class="mono sm-label">同時に見るべき 4 つのレンズ</p>
+          <div class="lens-grid">
+            <div class="lens"><b class="mono">PRICE</b><span>支払い金額</span></div>
+            <div class="lens"><b class="mono">RATE LIMITS</b><span>回数制限</span></div>
+            <div class="lens"><b class="mono">CREDITS</b><span>機能ごとの消費枠</span></div>
+            <div class="lens lens--hidden"><b class="mono">TIME</b><span>HIDDEN COST（隠れコスト）</span></div>
+          </div>
+        </div>
+        <p class="widget-note">概念図。具体的な金額・回数は本レポートに記載がなく、時期や地域、プランの改定で変わりうる。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CH5 ================= -->
+<section class="chapter" id="ch5" data-scene="6" data-name="PERSONALITY DRIFT">
+  <header class="ch-head">
+    <p class="ch-num mono" data-num="05">CHAPTER 05</p>
+    <h2 class="ch-title split-lines">第5章：ユーザー体験と“性格”の揺れ（ローンチ直後の典型的現象）</h2>
+  </header>
+  <div class="ch-grid">
+    <div class="ch-text reveal">
+      <p>大規模モデルの<strong>ローンチ直後は、体感の「揺れ」</strong>が発生しやすい。<strong>性格がそっけない</strong>／<strong>温度感が合わない</strong>といった声が一時的に噴出することがあるが、これは<strong>PERFORMANCE（できること）</strong>と<strong>PERSONALITY（感じ方）</strong>を混在して語ってしまうことによる誤解も含む。<strong>性能は高いのに印象は低い</strong>、あるいは<strong>逆</strong>という現象は珍しくない。Thinkingは<strong>“考えてから話す”</strong>ので、<strong>会話のテンポやノリ</strong>が従来より<strong>理詰め寄り（LOGIC‑HEAVY）</strong>に感じられるタイミングがある。<strong>楽しいおしゃべり</strong>よりも、<strong>難問の安定解決</strong>に価値を置く局面ではプラスに働くが、<strong>雑談の軽さ</strong>を求める場面では<strong data-hl="cost">コスト（待ち時間）＞ベネフィット</strong>と映ることもある。</p>
+    </div>
+    <div class="ch-visual reveal">
+      <div class="quadrant" data-tilt>
+        <p class="widget-label mono">MAP ／ PERFORMANCE と PERSONALITY を切り分ける</p>
+        <div class="quad" id="quad">
+          <span class="ax ax-y mono">PERFORMANCE（できること）↑</span>
+          <span class="ax ax-x mono">PERSONALITY（感じ方）→</span>
+          <div class="q q1"><b>性能は高いのに<br>印象は低い</b></div>
+          <div class="q q2"><b>性能も印象も高い</b></div>
+          <div class="q q3"><b>性能も印象も低い</b></div>
+          <div class="q q4"><b>逆：印象は高いが<br>性能は低い</b></div>
+          <div class="quad__dot" id="quadDot"><span class="mono">体感</span></div>
+        </div>
+        <div class="seg" id="moodSeg">
+          <button data-v="chat">雑談の軽さを求める</button>
+          <button data-v="hard" class="is-active">難問の安定解決を求める</button>
+        </div>
+        <p class="mood-out" id="moodOut"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CH6 ================= -->
+<section class="chapter" id="ch6" data-scene="7" data-name="COMPARISON">
+  <header class="ch-head">
+    <p class="ch-num mono" data-num="06">CHAPTER 06</p>
+    <h2 class="ch-title split-lines">第6章：前世代・代替との比較（o3やGPT‑4oなど）</h2>
+  </header>
+  <div class="ch-text ch-text--wide reveal">
+    <p>Thinkingの比較対象としてしばしば挙がるのが<strong>o3系列（REASONING‑FIRST）</strong>や<strong>GPT‑4o（FAST &amp; MULTIMODAL志向）</strong>である。<strong>o3は「推論」に最初から全振り</strong>する設計で、<strong>常に深く考える</strong>ぶん、<strong>レイテンシやコスト</strong>が読みにくい。一方、<strong>GPT‑5は“必要なときだけ深く考える”可変アプローチ</strong>が核で、<strong>日常の軽い質問では軽量に、難問では重量に</strong>と<strong>ダイナミックに振る</strong>。これにより、<strong>平均的な体験のコスパを上げる狙い</strong>がある。<strong>SWE‑BENCHやMMMU</strong>のような外部ベンチでの細かな優劣は今後も更新され続けるため、<strong>「差は固定ではない」</strong>という前提で、<strong>使う課題の種類と長さ</strong>を軸に「お得」度を測るのが理にかなっている。</p>
+  </div>
+  <div class="cards3d reveal">
+    <article class="card3d" data-tilt>
+      <div class="card3d__inner">
+        <div class="card3d__face front c-o3">
+          <p class="mono">REASONING‑FIRST</p><h3>o3系列</h3>
+          <div class="depth-viz"><i style="--h:.92"></i><i style="--h:.95"></i><i style="--h:.9"></i><i style="--h:.94"></i><i style="--h:.93"></i></div>
+          <p class="cap mono">常に深い</p>
+        </div>
+        <div class="card3d__face back">
+          <ul><li>「推論」に最初から全振り</li><li>常に深く考える</li><li>そのぶんレイテンシやコストが読みにくい</li></ul>
+        </div>
+      </div>
+    </article>
+    <article class="card3d" data-tilt>
+      <div class="card3d__inner">
+        <div class="card3d__face front c-4o">
+          <p class="mono">FAST &amp; MULTIMODAL</p><h3>GPT‑4o</h3>
+          <div class="depth-viz"><i style="--h:.3"></i><i style="--h:.28"></i><i style="--h:.32"></i><i style="--h:.3"></i><i style="--h:.27"></i></div>
+          <p class="cap mono">速さ・マルチモーダル志向</p>
+        </div>
+        <div class="card3d__face back">
+          <ul><li>FAST &amp; MULTIMODAL志向</li><li>Thinkingの比較対象としてしばしば挙がる</li></ul>
+        </div>
+      </div>
+    </article>
+    <article class="card3d card3d--hero" data-tilt>
+      <div class="card3d__inner">
+        <div class="card3d__face front c-g5">
+          <p class="mono">ADAPTIVE</p><h3>GPT‑5</h3>
+          <div class="depth-viz"><i style="--h:.25"></i><i style="--h:.9"></i><i style="--h:.3"></i><i style="--h:.22"></i><i style="--h:.95"></i></div>
+          <p class="cap mono">必要なときだけ深い</p>
+        </div>
+        <div class="card3d__face back">
+          <ul><li>“必要なときだけ深く考える”可変アプローチ</li><li>日常の軽い質問では軽量に、難問では重量に</li><li>平均的な体験のコスパを上げる狙い</li></ul>
+        </div>
+      </div>
+    </article>
+  </div>
+  <p class="widget-note center reveal">カードにカーソルを合わせる（タップする）と裏面へ。棒は思考の深さのイメージ図で、ベンチマーク値ではない。「差は固定ではない」。</p>
+</section>
+
+<!-- ================= CH7 ================= -->
+<section class="chapter chapter--formula" id="ch7" data-scene="8" data-name="THE FORMULA">
+  <header class="ch-head">
+    <p class="ch-num mono" data-num="07">CHAPTER 07</p>
+    <h2 class="ch-title split-lines">第7章：「お得」を数式で直観する（高校生向けの超シンプル版）</h2>
+  </header>
+  <div class="ch-text ch-text--wide reveal">
+    <p>本稿では、「お得」を次のように直観化する。</p>
+  </div>
+  <div class="formula reveal" aria-label="TOTAL VALUE = BENEFIT − COST">
+    <span class="f-term f-total">TOTAL VALUE</span><span class="f-op">=</span><span class="f-term f-ben">BENEFIT</span><span class="f-op">−</span><span class="f-term f-cost">COST</span>
+  </div>
+  <div class="ch-grid">
+    <div class="ch-text reveal">
+      <p>ここで、<strong data-hl="ben">BENEFIT</strong>は「正しく・一貫して・長い課題を<strong>やり切れる</strong>こと」で、<strong>再作業の削減（REWORK REDUCTION）</strong>が最大のポイントである。<strong data-hl="cost">COST</strong>は「料金」だけでなく、<strong>待ち時間</strong>、<strong>回数制限の消耗</strong>、<strong>失敗による時間ロス</strong>も含む。Thinkingは<strong>BENEFITを押し上げるが、COSTも増やしうる</strong>。したがって、<strong>“難しい・長い・正確さが超重要”</strong>な課題ほど、<strong>Thinking</strong>のROI（RETURN ON INVESTMENT）<strong>が高くなりやすい</strong>。逆に、<strong>短い雑談・軽い要約・すでに答えが決まっている確認作業</strong>では、<strong>INSTANT経路で十分</strong>なことが多く、Thinkingは<strong>“過剰品質（OVER‑QUALITY）”</strong>になりうる。</p>
+      <p class="callout"><strong>重要な含意：VALUE IS CONTEXT‑DEPENDENT.</strong> どのプランが何円かより前に、<strong>自分の課題の性質（LENGTH・DIFFICULTY・TOLERANCE TO ERRORS）</strong>を見極めることが、本当の「お得」への最短路である。</p>
+    </div>
+    <div class="ch-visual reveal">
+      <div class="calc" data-tilt>
+        <p class="widget-label mono">CALCULATOR ／ 自分の課題の性質を見極める</p>
+        <div class="calc__row"><label for="sLen">LENGTH<small>課題の長さ</small></label><input type="range" id="sLen" min="0" max="100" value="30"><output class="mono" id="oLen">30</output></div>
+        <div class="calc__row"><label for="sDif">DIFFICULTY<small>難しさ</small></label><input type="range" id="sDif" min="0" max="100" value="30"><output class="mono" id="oDif">30</output></div>
+        <div class="calc__row"><label for="sTol">TOLERANCE TO ERRORS<small>誤りの許容度</small></label><input type="range" id="sTol" min="0" max="100" value="70"><output class="mono" id="oTol">70</output></div>
+        <div class="calc__presets">
+          <button class="pbtn" data-p="10,10,90">短い雑談</button>
+          <button class="pbtn" data-p="25,15,75">軽い要約</button>
+          <button class="pbtn" data-p="15,10,60">確認作業</button>
+          <button class="pbtn" data-p="85,90,10">難しい・長い・正確さが超重要</button>
+        </div>
+        <div class="calc__result">
+          <div class="gauge"><svg viewBox="0 0 200 110"><path class="g-bg" d="M10 100 A90 90 0 0 1 190 100"/><path class="g-fg" id="gArc" d="M10 100 A90 90 0 0 1 190 100"/></svg><i class="g-needle" id="gNeedle"></i></div>
+          <div class="calc__verdict">
+            <p class="mono sm-label">THINKING ROI（イメージ）</p>
+            <p class="verdict" id="verdict">INSTANT経路で十分</p>
+            <p class="verdict-sub" id="verdictSub"></p>
+          </div>
+        </div>
+        <p class="widget-note">本章の考え方を可視化した直観モデル。数値は学習用の目安で、実測値ではない。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CH8 ================= -->
+<section class="chapter" id="ch8" data-scene="9" data-name="FOR STUDENTS">
+  <header class="ch-head">
+    <p class="ch-num mono" data-num="08">CHAPTER 08</p>
+    <h2 class="ch-title split-lines">第8章：高校生読者の視点からの考察（学びの場でThinkingは“得”か）</h2>
+  </header>
+  <div class="ch-grid ch-grid--rev">
+    <div class="ch-text reveal">
+      <p>学習用途では、<strong>「わかった気」を避け、段階的に理解を深める</strong>ことが重要である。ChatGPTの<strong>STUDY MODE</strong>のような学習体験とThinkingは親和性がある。Thinkingは、<strong>途中の論理の穴をふさぐ</strong>方向に働くため、<strong>数学の証明・理科の因果関係・長文の論旨構成</strong>など、<strong>「途中が大事」</strong>な科目で力を発揮しやすい。一方で、<strong data-hl="cost">待ち時間が学習集中の妨げ</strong>になる側面や、<strong>モデルの“安全側”挙動が過度に慎重</strong>に見える局面もありうる。高校生にとっての「お得」は、<strong>“質の高い解説”</strong>で<strong>“手戻りを減らす”</strong>ことと、<strong>“テンポよく反復”</strong>することの<strong>バランス</strong>で決まる。</p>
+      <p class="callout"><strong>BOTTOM LINE FOR STUDENTS:</strong> 定期テストの直前に<strong>短時間で大量演習</strong>したいときは<strong data-hl="fast">FAST</strong>が向き、<strong>難問をじっくり解きほぐす</strong>過程では<strong data-hl="think">THINKING</strong>が向く。<strong>両者の切替（ADAPTIVE USE）こそがVALUEの源泉</strong>であり、これをモデル側が<strong>AUTOで賢くやってくれる</strong>ほど、<strong>総合のコスパは上がりやすい</strong>。</p>
+    </div>
+    <div class="ch-visual reveal">
+      <div class="study" data-tilt>
+        <p class="widget-label mono">SCENARIO ／ 今のキミはどっち？</p>
+        <div class="study__cards">
+          <button class="scard" data-mode="fast">
+            <span class="scard__ico">⚡</span><b>定期テストの直前</b><span>短時間で大量演習したい</span><em class="mono">→ FAST</em>
+          </button>
+          <button class="scard" data-mode="think">
+            <span class="scard__ico">◎</span><b>難問をじっくり</b><span>解きほぐす過程</span><em class="mono">→ THINKING</em>
+          </button>
+        </div>
+        <div class="subjects">
+          <p class="mono sm-label">「途中が大事」な科目</p>
+          <div class="subj-row"><span>数学の証明</span><span>理科の因果関係</span><span>長文の論旨構成</span></div>
+        </div>
+        <div class="balance-bar">
+          <span class="mono">“質の高い解説”で“手戻りを減らす”</span>
+          <div class="bb"><i id="bbFill"></i></div>
+          <span class="mono">“テンポよく反復”</span>
+        </div>
+        <p class="widget-note">両者の切替（ADAPTIVE USE）こそがVALUEの源泉。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CH9 ================= -->
+<section class="chapter" id="ch9" data-scene="10" data-name="SAFETY & TRUST">
+  <header class="ch-head">
+    <p class="ch-num mono" data-num="09">CHAPTER 09</p>
+    <h2 class="ch-title split-lines">第9章：リスク・限界・倫理（SAFETYと信頼の現実）</h2>
+  </header>
+  <div class="ch-grid">
+    <div class="ch-text reveal">
+      <p>安全性では、<strong>SAFE‑COMPLETIONS</strong>の導入により、<strong>「ただ拒否」</strong>ではなく<strong>「安全に役立つ」出力</strong>を目指すアップデートが続く。ただし、<strong>完全無欠ではない</strong>。<strong>残留するハルシネーション（RESIDUAL HALLUCINATIONS）</strong>や<strong>評価のばらつき</strong>、<strong>“性格”への受け止め方の差</strong>は、引き続き注意点だ。Thinkingは<strong>「誤りを減らす可能性」</strong>を高めるが、<strong>誤りをゼロにはできない</strong>。<strong>CRITICAL READING（批判的読解）</strong>と<strong>CROSS‑CHECK（裏取り）</strong>は、引き続き人間側の責任である。<strong>TRUST = TECHNOLOGY × HABITS.</strong> 技術と習慣の両輪が、長期的な“お得”を保証する。</p>
+    </div>
+    <div class="ch-visual reveal">
+      <div class="trust" data-tilt>
+        <p class="widget-label mono">EQUATION ／ TRUST = TECHNOLOGY × HABITS</p>
+        <div class="trust__eq mono"><span>TRUST</span><b>=</b><span class="t-tech">TECH</span><b>×</b><span class="t-hab">HABITS</span></div>
+        <div class="calc__row"><label for="sTech">TECHNOLOGY<small>技術</small></label><input type="range" id="sTech" min="0" max="100" value="80"><output class="mono" id="oTech">80</output></div>
+        <div class="calc__row"><label for="sHab">HABITS<small>CRITICAL READING ＋ CROSS‑CHECK</small></label><input type="range" id="sHab" min="0" max="100" value="20"><output class="mono" id="oHab">20</output></div>
+        <div class="shield">
+          <svg viewBox="0 0 120 140" aria-hidden="true"><defs><linearGradient id="gSh" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5ef2ff"/><stop offset="1" stop-color="#b56cff"/></linearGradient></defs>
+            <path class="sh-bg" d="M60 6 L110 24 V66 C110 100 88 124 60 134 C32 124 10 100 10 66 V24 Z"/>
+            <path class="sh-fg" id="shFg" d="M60 6 L110 24 V66 C110 100 88 124 60 134 C32 124 10 100 10 66 V24 Z"/>
+          </svg>
+          <div class="shield__val"><b class="mono" id="trustVal">16</b><span class="mono">TRUST</span></div>
+        </div>
+        <p class="trust-msg" id="trustMsg"></p>
+        <p class="widget-note">掛け算なので、どちらかが 0 なら信頼も 0。技術と習慣の両輪。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONCLUSION ================= -->
+<section class="chapter conclusion" id="conclusion" data-scene="11" data-name="CONCLUSION">
+  <header class="ch-head ch-head--center">
+    <p class="ch-num mono" data-num="∞">CONCLUSION</p>
+    <h2 class="ch-title split-lines">結論：GPT‑5 Thinkingは「お得」か？</h2>
+  </header>
+  <div class="verdict-big reveal" aria-label="CONDITIONALLY YES（条件付きでYES）">
+    <span class="vb-small mono">THE ANSWER IS</span>
+    <span class="vb-main"><span class="vb-cond">CONDITIONALLY</span><span class="vb-yes">YES</span></span>
+    <span class="vb-ja">条件付きでYES</span>
+  </div>
+  <div class="ch-text ch-text--wide reveal">
+    <p>結論は<strong>CONDITIONALLY YES（条件付きでYES）</strong>である。<strong>長い課題・難しい課題・正確さが成果を左右する課題</strong>では、Thinkingが<strong>REWORK（やり直し）</strong>を激減させ、<strong>最終成果の信頼性と満足度</strong>を上げることで、<strong>総コストを下げる</strong>。<strong>これは“お金の安さ”ではなく“品質起点のコスパ”</strong>であり、<strong>プロジェクトや学習の“成功確率”を上げること自体がVALUE</strong>になる。逆に、<strong>軽い用途</strong>ではThinkingは<strong>過剰</strong>になりやすく、<strong>INSTANT/FASTのほうが“お得”</strong>だ。</p>
+    <p>端的に言い切るなら、<strong>THINKING COSTS TIME, BUT BUYS RELIABILITY. RELIABILITY</strong>が金や時間より<strong>大切</strong>な場面では<strong>お得</strong>、そうでない場面では<strong>お得ではない</strong>。<strong>それでも「AUTOによる賢い切替」が成熟するほど、平均ユーザーにとっての総合価値（TOTAL VALUE）は上向く</strong>だろう。<strong>お得の鍵は“使い分け”と“自動最適化”</strong>にある。</p>
+  </div>
+  <div class="split-verdict reveal">
+    <div class="sv sv--yes" data-tilt>
+      <p class="mono">THINKING が お得</p>
+      <ul><li>長い課題</li><li>難しい課題</li><li>正確さが成果を左右する課題</li></ul>
+      <p class="sv-foot">REWORKを激減 → 総コストを下げる</p>
+    </div>
+    <div class="sv sv--no" data-tilt>
+      <p class="mono">INSTANT/FAST が お得</p>
+      <ul><li>軽い用途</li><li>短い雑談・軽い要約</li><li>すでに答えが決まっている確認作業</li></ul>
+      <p class="sv-foot">Thinkingは“過剰品質”になりやすい</p>
+    </div>
+  </div>
+  <blockquote class="final-quote reveal">
+    <p class="mono">THINKING COSTS TIME,<br><span>BUT BUYS RELIABILITY.</span></p>
+    <footer>お得の鍵は <b>“使い分け”</b> と <b>“自動最適化”</b> にある。</footer>
+  </blockquote>
+</section>
+
+<footer class="site-foot">
+  <p class="mono">SOURCE — 「GPT 5 Thinkingはお得か｜I（評価版レポート）」全3ページ（全文掲載）</p>
+  <p class="mono foot-sub">本サイトのインタラクティブ要素は本文の内容を視覚化したイメージであり、本文にない数値・料金・ベンチマーク結果は含みません。</p>
+  <a href="#top" class="mono to-top" data-magnetic>↑ BACK TO TOP</a>
+</footer>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script type="module" src="js/scene.js"></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>

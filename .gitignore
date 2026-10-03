@@ -1,0 +1,5 @@
+# auto-commit daemon runtime files
+.autocommit/
+node_modules/
+*.log
+.DS_Store

@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FRAME / ARCHIVE — 高校生がSony α7 IVとWD Blue 8TBを活用する将来性</title>
+<meta name="description" content="Sony α7 IVとWD Blue 8TBを高校生が使いこなすための性能解説・データ管理術・将来展望をまとめたガイド。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&family=Archivo+Black&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ========== HUD NAV ========== -->
+<header class="hud">
+  <a href="#top" class="hud__logo"><span class="rec-dot"></span>FRAME<span class="slash">/</span>ARCHIVE</a>
+  <nav class="hud__nav" aria-label="章ナビゲーション">
+    <a href="#ch1"><span>01</span>CAMERA</a>
+    <a href="#ch2"><span>02</span>STORAGE</a>
+    <a href="#ch3"><span>03</span>BACKUP</a>
+    <a href="#ch4"><span>04</span>IMPACT</a>
+    <a href="#ch5"><span>05</span>FUTURE</a>
+  </nav>
+  <div class="hud__meta mono"><span id="hudTime">00:00:00</span> ・ <span id="hudProgress">000</span>%</div>
+</header>
+
+<!-- ========== HERO ========== -->
+<section class="hero" id="top">
+  <div class="viewfinder" aria-hidden="true">
+    <span class="vf-corner tl"></span><span class="vf-corner tr"></span>
+    <span class="vf-corner bl"></span><span class="vf-corner br"></span>
+    <div class="vf-top mono">
+      <span class="rec"><i></i>REC</span>
+      <span>4K 60p</span><span>10bit 4:2:2</span><span>XAVC S-I</span>
+    </div>
+    <div class="vf-bottom mono">
+      <span>1/125</span><span>F2.8</span><span>ISO 800</span><span>±0.0</span>
+      <span class="vf-battery">▮▮▮▯</span><span>[ 8TB ]</span>
+    </div>
+    <div class="af-box" id="afBox"><span></span><span></span><span></span><span></span></div>
+  </div>
+
+  <div class="hero__inner">
+    <p class="eyebrow mono">REPORT — HIGH SCHOOL CREATOR EDITION</p>
+    <h1 class="hero__title">
+      <span class="line">撮る力と、</span>
+      <span class="line">残す力を、</span>
+      <span class="line accent">17歳で手に入れる。</span>
+    </h1>
+    <p class="hero__lead">
+      高校生が <strong>Sony α7 IV</strong> と <strong>WD Blue 8TB</strong> を活用する将来性と、現実的な活用法。<br>
+      カメラの性能、データの守り方、そして機材の先にある進路まで。
+    </p>
+    <div class="hero__duo">
+      <div class="duo-card cam">
+        <p class="mono">CAPTURE</p>
+        <h2>α7 IV</h2>
+        <p>33MP フルサイズ / 4K60p / 瞳AF</p>
+      </div>
+      <div class="duo-plus">+</div>
+      <div class="duo-card hdd">
+        <p class="mono">ARCHIVE</p>
+        <h2>WD Blue 8TB</h2>
+        <p>CMR方式 / 256MB / 約185MB/s</p>
+      </div>
+    </div>
+  </div>
+  <a href="#ch1" class="scroll-cue mono">SCROLL<span></span></a>
+</section>
+
+<!-- ========== MARQUEE ========== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track mono">
+    <span>約3300万画素</span><span>★</span><span>4K/60p</span><span>★</span><span>10bit</span><span>★</span><span>リアルタイム瞳AF</span><span>★</span><span>約10コマ/秒</span><span>★</span><span>8TB CMR</span><span>★</span><span>3-2-1 RULE</span><span>★</span>
+    <span>約3300万画素</span><span>★</span><span>4K/60p</span><span>★</span><span>10bit</span><span>★</span><span>リアルタイム瞳AF</span><span>★</span><span>約10コマ/秒</span><span>★</span><span>8TB CMR</span><span>★</span><span>3-2-1 RULE</span><span>★</span>
+  </div>
+</div>
+
+<main>
+
+<!-- ========== CH1 CAMERA ========== -->
+<section class="chapter" id="ch1">
+  <div class="chapter__head reveal">
+    <p class="chapter__num">01</p>
+    <div>
+      <p class="eyebrow mono">CAMERA — SONY α7 IV</p>
+      <h2 class="chapter__title">写真も動画も、<br>"基本を超える"ハイブリッド機。</h2>
+    </div>
+  </div>
+
+  <div class="spec-grid">
+    <article class="spec reveal">
+      <p class="spec__label mono">SENSOR</p>
+      <p class="spec__value"><span class="count" data-to="3300">0</span><small>万画素</small></p>
+      <p class="spec__desc">フルサイズセンサーで非常に高精細な静止画。<sup><a href="#src1">1</a></sup></p>
+    </article>
+    <article class="spec reveal">
+      <p class="spec__label mono">MOVIE</p>
+      <p class="spec__value">4K<small>/</small><span class="count" data-to="60">0</span><small>p</small></p>
+      <p class="spec__desc">10bitの色深度と高ビットレートで本格的な映像制作に対応。<sup><a href="#src1">1</a></sup></p>
+    </article>
+    <article class="spec reveal">
+      <p class="spec__label mono">BURST</p>
+      <p class="spec__value">約<span class="count" data-to="10">0</span><small>コマ/秒</small></p>
+      <p class="spec__desc">α1譲りのAFと高速連写で決定的瞬間を逃しにくい。<sup><a href="#src2">2</a><a href="#src3">3</a></sup></p>
+    </article>
+    <article class="spec reveal">
+      <p class="spec__label mono">AF</p>
+      <p class="spec__value">EYE<small>リアルタイム瞳AF</small></p>
+      <p class="spec__desc">瞳や顔を自動で追尾。運動会でも文化祭のステージでも。<sup><a href="#src4">4</a></sup></p>
+    </article>
+  </div>
+
+  <div class="scenes">
+    <h3 class="sub-title reveal"><span class="mono">USE CASE</span>高校生活の"現場"で効く理由</h3>
+    <div class="scene-list">
+      <div class="scene reveal">
+        <p class="scene__tag mono">SPORTS DAY</p>
+        <h4>運動会・部活の試合</h4>
+        <p>走り回る被写体にもピントを追従。高速連写と組み合わせて一瞬を確実に捉える。</p>
+      </div>
+      <div class="scene reveal">
+        <p class="scene__tag mono">STAGE / NIGHT</p>
+        <h4>文化祭・室内イベント・夜景</h4>
+        <p>高感度に強く、暗い会場や夜でもノイズの少ない美しい仕上がり。<sup><a href="#src4">4</a></sup></p>
+      </div>
+      <div class="scene reveal">
+        <p class="scene__tag mono">VLOG</p>
+        <h4>Vlog・自撮り・創作動画</h4>
+        <p>バリアングル液晶でロー／ハイアングルも自在。静止画⇔動画の切替レバーでシームレスに。<sup><a href="#src7">7</a></sup></p>
+      </div>
+      <div class="scene reveal">
+        <p class="scene__tag mono">DAILY CARRY</p>
+        <h4>通学・旅行に持ち出す</h4>
+        <p>従来の一眼レフより軽量コンパクト。長時間持ち歩いても負担が少ない。<sup><a href="#src6">6</a></sup></p>
+      </div>
+    </div>
+  </div>
+
+  <blockquote class="pull reveal">
+    「初心者でも扱いやすく、<br>プロが使っても満足できる万能カメラ」
+    <cite class="mono">— 長期使用レビューより <sup><a href="#src5">5</a></sup></cite>
+  </blockquote>
+</section>
+
+<!-- ========== CH2 STORAGE ========== -->
+<section class="chapter chapter--blue" id="ch2">
+  <div class="chapter__head reveal">
+    <p class="chapter__num">02</p>
+    <div>
+      <p class="eyebrow mono">STORAGE — WD BLUE 8TB (WD80EAZZ)</p>
+      <h2 class="chapter__title">撮った全部を、<br>ためらわず残せる容量。</h2>
+    </div>
+  </div>
+
+  <div class="storage">
+    <div class="platter-wrap reveal" aria-hidden="true">
+      <div class="platter">
+        <div class="platter__rings"></div>
+        <div class="platter__hub mono">8TB</div>
+      </div>
+      <div class="arm"></div>
+      <p class="platter-caption mono">5640 RPM ・ CMR</p>
+    </div>
+
+    <div class="storage__body">
+      <div class="cmr-callout reveal">
+        <p class="mono badge">KEY POINT</p>
+        <h3>8TBモデルは <em>CMR方式</em>。</h3>
+        <p>大容量HDDでは安価なSMR方式が多い中、8TBモデルは上位シリーズ並みのCMR（従来型磁気記録）を採用。大量のファイルを書き込んでも速度が落ちにくく、長期間安定して動作しやすいのが特長です。<sup><a href="#src9">9</a><a href="#src11">11</a><a href="#src12">12</a></sup></p>
+      </div>
+
+      <dl class="spec-table reveal">
+        <div><dt class="mono">回転数</dt><dd>5640 rpm</dd></div>
+        <div><dt class="mono">キャッシュ</dt><dd>256 MB</dd></div>
+        <div><dt class="mono">公称転送速度</dt><dd>約185 MB/s <sup><a href="#src10">10</a></sup></dd></div>
+        <div><dt class="mono">実測 読み／書き</dt><dd>224 / 215 MB/s <sup><a href="#src13">13</a></sup></dd></div>
+        <div><dt class="mono">小さいファイル混在時</dt><dd>平均 約125 MB/s <sup><a href="#src14">14</a></sup></dd></div>
+        <div><dt class="mono">動作音・発熱</dt><dd>静か・穏やか <sup><a href="#src15">15</a></sup></dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <!-- Capacity simulator -->
+  <div class="sim reveal" id="simulator">
+    <div class="sim__head">
+      <p class="mono eyebrow">SIMULATOR</p>
+      <h3>8TBにどれだけ入る？</h3>
+      <p class="sim__note">スライダーで写真と動画の配分を決めてみよう。（目安：実効容量 約7,450GB で計算）</p>
+    </div>
+
+    <div class="sim__controls">
+      <label class="sim__row">
+        <span>写真 <b id="ratioPhotoLabel">50</b>% ／ 動画 <b id="ratioVideoLabel">50</b>%</span>
+        <input type="range" id="ratio" min="0" max="100" value="50" aria-label="写真と動画の配分">
+      </label>
+      <div class="sim__row sim__selects">
+        <label>RAW形式
+          <select id="rawSize">
+            <option value="35">圧縮RAW（約35MB/枚）</option>
+            <option value="45" selected>ロスレス圧縮RAW（約45MB/枚）</option>
+            <option value="70">非圧縮RAW（約70MB/枚）</option>
+          </select>
+        </label>
+        <label>動画ビットレート
+          <select id="bitrate">
+            <option value="50">4K 50Mbps</option>
+            <option value="100">4K 100Mbps</option>
+            <option value="150" selected>4K 150Mbps（10bit）</option>
+            <option value="200">4K 200Mbps</option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <div class="sim__bar" aria-hidden="true">
+      <span class="sim__bar-photo" id="barPhoto"></span>
+      <span class="sim__bar-video" id="barVideo"></span>
+    </div>
+
+    <div class="sim__result">
+      <div>
+        <p class="mono">RAW PHOTOS</p>
+        <p class="sim__num"><span id="outPhotos">0</span><small>枚</small></p>
+      </div>
+      <div>
+        <p class="mono">4K VIDEO</p>
+        <p class="sim__num"><span id="outVideo">0</span><small>時間</small></p>
+      </div>
+    </div>
+    <p class="sim__foot">※ 数値は概算です。設定やシーンによって実際のファイルサイズは変わります。全容量を写真に使えば「数十万枚規模」、低めのビットレートなら動画も「数百時間分」が目安です。</p>
+  </div>
+
+  <div class="voices">
+    <p class="voice reveal">「8TBとは思えないほど静かで、深夜作業中でも気にならない」</p>
+    <p class="voice reveal">「日々のバックアップ用に最適」<sup><a href="#src16">16</a></sup></p>
+  </div>
+</section>
+
+<!-- ========== CH3 BACKUP ========== -->
+<section class="chapter" id="ch3">
+  <div class="chapter__head reveal">
+    <p class="chapter__num">03</p>
+    <div>
+      <p class="eyebrow mono">WORKFLOW — DATA MANAGEMENT</p>
+      <h2 class="chapter__title">データは、<br>1か所に置いた瞬間から危うい。</h2>
+    </div>
+  </div>
+
+  <div class="rule321 reveal">
+    <div class="rule321__item">
+      <p class="rule321__n">3</p>
+      <p class="rule321__t">つのコピー</p>
+      <p class="rule321__d">重要データは最低3つ保持する</p>
+    </div>
+    <div class="rule321__item">
+      <p class="rule321__n">2</p>
+      <p class="rule321__t">種類の媒体</p>
+      <p class="rule321__d">内蔵HDD・外付け・クラウドなど</p>
+    </div>
+    <div class="rule321__item">
+      <p class="rule321__n">1</p>
+      <p class="rule321__t">つは別の場所</p>
+      <p class="rule321__d">オフサイトで災害・盗難に備える</p>
+    </div>
+    <p class="rule321__src mono">3-2-1 RULE <sup><a href="#src18">18</a></sup></p>
+  </div>
+
+  <h3 class="sub-title reveal"><span class="mono">PIPELINE</span>撮影から保管までの流れ</h3>
+  <ol class="flow">
+    <li class="flow__step reveal">
+      <span class="flow__no mono">STEP 01</span>
+      <h4>撮影</h4>
+      <p>α7 IVでRAW・4K動画を記録。</p>
+    </li>
+    <li class="flow__step reveal">
+      <span class="flow__no mono">STEP 02</span>
+      <h4>すぐにPCへ取り込む</h4>
+      <p>メモリーカードのデータは、バックアップが取れるまで<strong>消さない</strong>。</p>
+    </li>
+    <li class="flow__step reveal">
+      <span class="flow__no mono">STEP 03</span>
+      <h4>WD Blue 8TBにメイン保管</h4>
+      <p>RAW・動画など大容量データの"本拠地"。</p>
+    </li>
+    <li class="flow__step reveal">
+      <span class="flow__no mono">STEP 04</span>
+      <h4>サブへ分散コピー</h4>
+      <p>外付けHDD／SSD・クラウド・USBメモリへ。</p>
+    </li>
+  </ol>
+
+  <div class="tiers">
+    <article class="tier reveal">
+      <p class="tier__icon mono">EXT</p>
+      <h4>外付けHDD・SSD</h4>
+      <p>特に失いたくない写真や作品を、1〜2TB程度の外付けドライブに定期的に差分バックアップ。物理的に別媒体なので安心感が増す。<sup><a href="#src19">19</a></sup></p>
+      <p class="tier__tag">定期・差分</p>
+    </article>
+    <article class="tier reveal">
+      <p class="tier__icon mono">CLOUD</p>
+      <h4>クラウドストレージ</h4>
+      <p>学校のGoogle DriveやOneDriveなど。無料の15GB程度でも、編集済みJPEGや書類だけ上げておけばPCが壊れてもアクセス可能。RAW動画は巨大なのでサブ扱いと割り切る。<sup><a href="#src20">20</a><a href="#src21">21</a></sup></p>
+      <p class="tier__tag">厳選・軽量</p>
+    </article>
+    <article class="tier reveal">
+      <p class="tier__icon mono">USB</p>
+      <h4>暗号化USBメモリ</h4>
+      <p>レポート用写真や卒アル用作品など一部の重要データを。持ち運びや受け渡しに便利だが、紛失リスクに備えて必ずパスワード保護を。<sup><a href="#src22">22</a><a href="#src23">23</a></sup></p>
+      <p class="tier__tag">小規模・携帯</p>
+    </article>
+  </div>
+
+  <div class="formula reveal">
+    <p><span>日常の作業ファイル</span> = クラウド ＋ PC</p>
+    <p><span>本格的な大容量データ</span> = WD Blue 8TB ＋ 予備バックアップ <sup><a href="#src24">24</a></sup></p>
+  </div>
+
+  <div class="checklist reveal">
+    <h4 class="mono">HANDLING CHECKLIST</h4>
+    <ul>
+      <li>持ち運び時の衝撃に注意する</li>
+      <li>乾燥する冬場の静電気に気を付ける <sup><a href="#src26">26</a></sup></li>
+      <li>PCケース内の冷却と設置を適切に</li>
+      <li>S.M.A.R.T情報で定期的に健康チェック</li>
+      <li>写真部の部活PCにもコピーしてオフサイト保管 <sup><a href="#src25">25</a></sup></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== CH4 IMPACT ========== -->
+<section class="chapter chapter--paper" id="ch4">
+  <div class="chapter__head reveal">
+    <p class="chapter__num">04</p>
+    <div>
+      <p class="eyebrow mono">IMPACT — WHY IT'S "SUGOI"</p>
+      <h2 class="chapter__title">「本気度が違う」と、<br>一目置かれる理由。</h2>
+    </div>
+  </div>
+
+  <div class="reasons">
+    <div class="reason reveal">
+      <p class="reason__k mono">POSITION</p>
+      <h4>エントリーではなく<br>ハイアマチュア機</h4>
+      <p>α6100などの初心者用とは一線を画す上位機種。「高校生には十分すぎる？」と質問が出るほど。<sup><a href="#src27">27</a><a href="#src28">28</a></sup></p>
+    </div>
+    <div class="reason reveal">
+      <p class="reason__k mono">PRICE</p>
+      <h4>ボディ＋Gレンズで<br><em>約50万円</em></h4>
+      <p>24-105mm Gレンズと揃えると新品で約50万円近く。学生にとって特別な買い物。<sup><a href="#src29">29</a></sup></p>
+    </div>
+    <div class="reason reveal">
+      <p class="reason__k mono">REPUTATION</p>
+      <h4>「YouTuberの<br>標準機」</h4>
+      <p>動画撮影に強く、作品クオリティはプロ並み。SNS発信でも差がつく。<sup><a href="#src32">32</a></sup></p>
+    </div>
+  </div>
+
+  <div class="persuade reveal">
+    <p class="mono eyebrow">TIPS — 親を説得するなら</p>
+    <p class="persuade__body">家族に「また高いカメラ買うの？」と止められたユーザーも、<strong>「高性能で長く使える」「いざ不要になっても高値で売れる」</strong>と説明して納得してもらえたそうです。<sup><a href="#src30">30</a><a href="#src31">31</a></sup></p>
+  </div>
+
+  <h3 class="sub-title reveal"><span class="mono">ROLE MODELS</span>高校生から評価された先輩たち</h3>
+  <div class="cases">
+    <article class="case reveal">
+      <div class="case__frame mono"><span>CASE 01</span><span>AGE 18</span></div>
+      <h4>なつキ さん</h4>
+      <p class="case__role">高校生フォトグラファー</p>
+      <p>高校1年生から本格的にカメラを始め、日常の何気ない一瞬を切り取る写真をInstagramで発表。高校卒業後は写真の専門学校へ進学予定。<sup><a href="#src33">33</a><a href="#src34">34</a></sup></p>
+    </article>
+    <article class="case reveal">
+      <div class="case__frame mono"><span>CASE 02</span><span>FOLLOWERS 20K+</span></div>
+      <h4>鈴木 啓悟 さん</h4>
+      <p class="case__role">「高校生富士山写真家」</p>
+      <p>高校在学中に富士山の作品でフォロワー2万人超の人気に。メディアに注目され、卒業後にプロ写真家として活動を開始。<sup><a href="#src35">35</a></sup></p>
+    </article>
+  </div>
+
+  <p class="caveat reveal">「高性能な機材＝良い写真」ではない。<br>でも、<strong>機材のハンデがない分、表現の幅は広がり、実力は伝わりやすい。</strong></p>
+</section>
+
+<!-- ========== CH5 FUTURE ========== -->
+<section class="chapter" id="ch5">
+  <div class="chapter__head reveal">
+    <p class="chapter__num">05</p>
+    <div>
+      <p class="eyebrow mono">FUTURE — CAREER & LEARNING</p>
+      <h2 class="chapter__title">機材の先に、<br>進路が見えてくる。</h2>
+    </div>
+  </div>
+
+  <div class="paths">
+    <article class="path reveal">
+      <p class="path__no mono">PATH A</p>
+      <h4>専門進学・写真/映像の道</h4>
+      <p>専門学校や美大の写真学科へ。在学中にハイエンド機材で蓄積したポートフォリオが、面接や作品審査で大きな武器に。<sup><a href="#src36">36</a></sup></p>
+    </article>
+    <article class="path reveal">
+      <p class="path__no mono">PATH B</p>
+      <h4>在学中から半プロ活動</h4>
+      <p>YouTube・TikTokで本格動画を継続投稿。登録者が増えれば広告収入や企業案件の可能性も。<sup><a href="#src32">32</a></sup></p>
+    </article>
+    <article class="path reveal">
+      <p class="path__no mono">PATH C</p>
+      <h4>写真で小さく収益化</h4>
+      <p>ストックフォト出品やコンテスト入賞。写真販売は高校生におすすめの副業として挙げられている。<sup><a href="#src37">37</a></sup></p>
+    </article>
+    <article class="path reveal">
+      <p class="path__no mono">PATH D</p>
+      <h4>現場経験・露出を積む</h4>
+      <p>写真館・ブライダルのアルバイト、観光PRのインターン、学校行事の公式カメラマン。地元メディアに取り上げられれば強い実績に。</p>
+    </article>
+  </div>
+
+  <div class="skills reveal">
+    <h3 class="sub-title"><span class="mono">TRANSFERABLE SKILLS</span>写真・動画以外にも効くスキル</h3>
+    <ul class="skill-tags">
+      <li>データ管理</li><li>バックアップ設計</li><li>クラウド運用</li><li>RAW現像</li><li>動画編集</li><li>Adobe系ソフト</li><li>SNS発信</li><li>ブログ執筆</li><li>電子書籍の作品集販売</li><li>ポートフォリオ制作</li>
+    </ul>
+  </div>
+
+  <div class="loop reveal" aria-label="成長の好循環">
+    <span>撮る</span><i>→</i><span>残す</span><i>→</i><span>発信する</span><i>→</i><span>収益化</span><i>→</i><span>機材投資</span><i>↺</i>
+  </div>
+
+  <div class="finale reveal">
+    <p class="finale__kicker mono">— 好きこそ物の上手なれ</p>
+    <p class="finale__text">高校生の今だからこそ感じ取れる感性を作品に焼き付け、<br>それらを<em>発信し、保存し続ける</em>こと。<br>それが、将来の自分への財産になる。</p>
+  </div>
+</section>
+
+<!-- ========== SOURCES ========== -->
+<section class="sources" id="sources">
+  <h2 class="mono">SOURCES</h2>
+  <ol class="source-list">
+    <li id="src1"><b>1, 2, 7, 8</b><a href="https://www.fujiya-camera.co.jp/blog/detail/info/20220112/" target="_blank" rel="noopener">SONY α7 IV 実写レビュー、画質、高感度、AF、動画性能をチェック！｜フジヤカメラ</a></li>
+    <li id="src3"><b>3, 4, 6</b><a href="https://note.com/tsut_tsu/n/n96ad604e29bd" target="_blank" rel="noopener">学校撮影カメラマンがSONY α7IVを1年間使ってみた(正直レビュー)｜筒井 遥</a></li>
+    <li id="src5"><b>5, 30, 31</b><a href="https://shichicame.xsrv.jp/a7iv-review-functioins" target="_blank" rel="noopener">〖3年使用レビュー〗ソニーα7IVを長期使用して分かったメリットデメリット｜シチミカメラ</a></li>
+    <li id="src9"><b>9, 10, 11, 14</b><a href="https://chimolog.co/bto-hdd-wd80eazz/" target="_blank" rel="noopener">WD80EAZZ（WD Blue 8TB）レビュー：安いのにHGST製でCMR方式のHDD｜ちもろぐ</a></li>
+    <li id="src12"><b>12, 15, 16, 17</b><a href="https://note.com/pcmaster/n/ne319e540aae0" target="_blank" rel="noopener">WD Blue 8TB HDDが安くなっている。｜パソコンマスター</a></li>
+    <li id="src13"><b>13</b><a href="https://weekly.ascii.jp/elem/000/004/077/4077757/2/" target="_blank" rel="noopener">大容量HDDはWD Blueの8TBモデルがオススメ！（2）｜週刊アスキー</a></li>
+    <li id="src18"><b>18–25</b><a href="https://www.tech-life-ramen.com/tech/student-backup-guide" target="_blank" rel="noopener">学生のためのバックアップガイド2025：データ保護の基礎｜おちゃめなエンジニア日記</a></li>
+    <li id="src26"><b>26</b><a href="https://weekly.ascii.jp/elem/000/004/077/4077757/" target="_blank" rel="noopener">大容量HDDはWD Blueの8TBモデルがオススメ！｜週刊アスキー</a></li>
+    <li id="src27"><b>27</b><a href="https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q13208141098" target="_blank" rel="noopener">高校生でsonya7iiを使うには十分すぎますか？｜Yahoo!知恵袋</a></li>
+    <li id="src28"><b>28</b><a href="https://kirameki-ps.com/blog/archives/335" target="_blank" rel="noopener">〖中高写真部向け〗メーカー別おすすめの初心者向けカメラ｜きらめきフォトサービス</a></li>
+    <li id="src29"><b>29</b><a href="https://bbs.kakaku.com/bbs/K0001403297/SortID=24551339/" target="_blank" rel="noopener">α7 IV ILCE-7M4 ボディ クチコミ掲示板｜価格.com</a></li>
+    <li id="src32"><b>32</b><a href="https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q10320289305" target="_blank" rel="noopener">SONYα7IVのいい所と悪いところ教えてください｜Yahoo!知恵袋</a></li>
+    <li id="src33"><b>33, 34, 36</b><a href="https://steenz.jp/10438/" target="_blank" rel="noopener">プロの写真家を目指す高校生〖なつキ・18歳〗｜Steenz</a></li>
+    <li id="src35"><b>35</b><a href="https://www.mtfuji.or.jp/thought/interview/vol105" target="_blank" rel="noopener">鈴木啓悟｜富士山インタビュー｜富士山世界遺産国民会議</a></li>
+    <li id="src37"><b>37</b><a href="https://agent-network.com/bitwork/recommend250" target="_blank" rel="noopener">中学生・高校生でもできる手軽な副業10選｜BitWork</a></li>
+  </ol>
+</section>
+
+</main>
+
+<footer class="footer">
+  <p class="footer__logo">FRAME<span class="slash">/</span>ARCHIVE</p>
+  <p class="mono">撮る力と、残す力を。 — A guide for high school creators.</p>
+  <p class="footer__small">本ページは公開情報をもとにまとめた解説です。製品名は各社の商標です。</p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -228,7 +228,7 @@ const SCENES = [
   { amp: .14, freq: .9,  form: 4, x: 3.2, y: 0,  z: 10, scale: .85, cols: C('#5ef2ff', '#b56cff', '#5fffb0'), bloom: 0.70 }, // ch9 trust
   { amp: .6,  freq: 1.4, form: 4, x: 0, y: 0,    z: 8.5, scale: 1.25, cols: C('#5fffb0', '#5ef2ff', '#ff5ec8'), bloom: 1.05 } // conclusion
 ];
-if (isMobile) SCENES.forEach((s, i) => { s.x = 0; s.y = i === 0 ? -2.6 : 1.6; s.z += 6; s.scale *= .75; s.bloom *= .8; });
+if (isMobile) SCENES.forEach((s, i) => { s.x = 0; s.y = i === 0 ? -3.6 : 1.6; s.z += 6; s.scale *= .75; s.bloom *= .8; });
 
 let current = 0, currentForm = 0;
 const target = { ...SCENES[0] };

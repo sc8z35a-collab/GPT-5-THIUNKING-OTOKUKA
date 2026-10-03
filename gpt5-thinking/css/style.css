@@ -100,8 +100,10 @@ main{position:relative;z-index:2}
 .hero__meta span::before{content:"◆ ";color:var(--think)}
 .hero__title{font-family:var(--f-disp);font-weight:900;line-height:.92;letter-spacing:-.02em;text-transform:none}
 .hero__title>span{display:block}
-.hero__l1{font-size:clamp(64px,13vw,210px);background:linear-gradient(100deg,#fff 20%,var(--fast) 60%,var(--fast2));-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero__l2{font-size:clamp(56px,11.5vw,190px);background:linear-gradient(100deg,var(--think) 0%,var(--think2) 60%,#ffb3e6);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:italic;padding-right:.1em}
+.hero__l1{font-size:clamp(64px,13vw,210px);color:#fff}
+.hero__l1 .char{background:linear-gradient(170deg,#fff 30%,var(--fast) 75%,var(--fast2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero__l2{font-size:clamp(56px,11.5vw,190px);color:var(--think);font-style:italic;padding-right:.1em}
+.hero__l2 .char{background:linear-gradient(170deg,#e0b8ff 10%,var(--think) 50%,var(--think2));-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.04em;margin-right:-.04em}
 .hero__l3{font-family:var(--f-ja);font-size:clamp(40px,7vw,110px);font-weight:900;margin-top:.12em;display:flex!important;align-items:center;flex-wrap:wrap}
 .hero__l3 .bar{color:var(--think);font-weight:400;margin:0 .15em}
 .hero__badge{margin-top:18px;font-size:clamp(14px,1.6vw,18px);color:var(--dim)}

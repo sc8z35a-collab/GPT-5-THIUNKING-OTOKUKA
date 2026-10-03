@@ -61,7 +61,7 @@ float snoise(vec3 v){
 const coreUniforms = {
   uTime: { value: 0 }, uAmp: { value: 0.25 }, uFreq: { value: 1.2 },
   uColA: { value: new THREE.Color('#5ef2ff') }, uColB: { value: new THREE.Color('#b56cff') },
-  uColC: { value: new THREE.Color('#ff5ec8') }, uPulse: { value: 0 }
+  uColC: { value: new THREE.Color('#ff5ec8') }, uPulse: { value: 0 }, uDim: { value: 1 }
 };
 const coreMat = new THREE.ShaderMaterial({
   uniforms: coreUniforms,
@@ -79,15 +79,16 @@ const coreMat = new THREE.ShaderMaterial({
       gl_Position=projectionMatrix*mv;
     }`,
   fragmentShader: /* glsl */`
-    uniform vec3 uColA,uColB,uColC; uniform float uTime;
+    uniform vec3 uColA,uColB,uColC; uniform float uTime,uDim;
     varying float vN; varying vec3 vNormal; varying vec3 vView;
     void main(){
       float fres=pow(1.-max(dot(vNormal,vView),0.),2.2);
       vec3 c=mix(uColA,uColB,smoothstep(-.6,.6,vN));
       c=mix(c,uColC,smoothstep(.35,.9,vN));
       float bands=.5+.5*sin(vN*18.-uTime*1.5);
-      c*=.35+.65*bands*.6+fres*1.6;
-      gl_FragColor=vec4(c,1.);
+      c*=.12+.28*bands+fres*1.15;
+      c=c/(1.+c*.6);
+      gl_FragColor=vec4(c*uDim,1.);
     }`
 });
 const core = new THREE.Mesh(new THREE.IcosahedronGeometry(1.35, isMobile ? 48 : 96), coreMat);
@@ -206,7 +207,7 @@ scene.add(points);
 /* ---------- Post processing ---------- */
 const composer = new EffectComposer(renderer);
 composer.addPass(new RenderPass(scene, camera));
-const bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 1.1, 0.7, 0.12);
+const bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.8, 0.55, 0.35);
 composer.addPass(bloom);
 composer.addPass(new OutputPass());
 
@@ -214,24 +215,24 @@ composer.addPass(new OutputPass());
 // amp = displacement (≒ 推論の深さ), form = particle formation, x = core horizontal offset
 const C = (a, b, c) => [new THREE.Color(a), new THREE.Color(b), new THREE.Color(c)];
 const SCENES = [
-  { amp: .30, freq: 1.1, form: 0, x: 2.6, y: 0,  z: 9,  scale: 1.15, cols: C('#5ef2ff', '#b56cff', '#ff5ec8'), bloom: 1.2 }, // hero
-  { amp: .18, freq: 1.0, form: 0, x: -3.2, y: 0, z: 10, scale: .9,  cols: C('#ff7a59', '#ffffff', '#5fffb0'), bloom: 1.0 }, // intro (cost/benefit)
-  { amp: .22, freq: 1.4, form: 1, x: 3.2, y: 0,  z: 10, scale: .85, cols: C('#5ef2ff', '#3b82ff', '#ff5ec8'), bloom: 1.1 }, // ch1 routes
-  { amp: .55, freq: 2.0, form: 0, x: -3.2, y: 0, z: 9,  scale: .95, cols: C('#5ef2ff', '#b56cff', '#ff5ec8'), bloom: 1.3 }, // ch2 deep thinking
-  { amp: .32, freq: 1.3, form: 2, x: 3.2, y: .3, z: 11, scale: .9,  cols: C('#5ef2ff', '#b56cff', '#ffd66b'), bloom: 1.15 },// ch3 performance
-  { amp: .2,  freq: 1.0, form: 3, x: -3.2, y: 0, z: 10, scale: .85, cols: C('#3b82ff', '#b56cff', '#ff5ec8'), bloom: 1.0 }, // ch4 tiers
-  { amp: .42, freq: 3.2, form: 0, x: 3.2, y: 0,  z: 10, scale: .85, cols: C('#ff5ec8', '#b56cff', '#ffd66b'), bloom: 1.1 }, // ch5 personality drift
-  { amp: .3,  freq: 1.6, form: 1, x: 0, y: -1.8, z: 12, scale: .8,  cols: C('#b56cff', '#5ef2ff', '#ff5ec8'), bloom: 1.05 },// ch6 compare
-  { amp: .26, freq: 1.2, form: 3, x: 3.2, y: 0,  z: 10, scale: .85, cols: C('#5fffb0', '#ffd66b', '#ff7a59'), bloom: 1.15 },// ch7 formula
-  { amp: .35, freq: 1.5, form: 2, x: -3.2, y: 0, z: 10, scale: .85, cols: C('#5ef2ff', '#ff5ec8', '#b56cff'), bloom: 1.1 }, // ch8 students
-  { amp: .14, freq: .9,  form: 4, x: 3.2, y: 0,  z: 10, scale: .85, cols: C('#5ef2ff', '#b56cff', '#5fffb0'), bloom: 1.0 }, // ch9 trust
-  { amp: .6,  freq: 1.4, form: 4, x: 0, y: 0,    z: 8.5, scale: 1.25, cols: C('#5fffb0', '#5ef2ff', '#ff5ec8'), bloom: 1.5 } // conclusion
+  { amp: .30, freq: 1.1, form: 0, x: 2.6, y: 0,  z: 9,  scale: 1.15, cols: C('#5ef2ff', '#b56cff', '#ff5ec8'), bloom: 0.84 }, // hero
+  { amp: .18, freq: 1.0, form: 0, x: -3.2, y: 0, z: 10, scale: .9,  cols: C('#ff7a59', '#ffffff', '#5fffb0'), bloom: 0.70 }, // intro (cost/benefit)
+  { amp: .22, freq: 1.4, form: 1, x: 3.2, y: 0,  z: 10, scale: .85, cols: C('#5ef2ff', '#3b82ff', '#ff5ec8'), bloom: 0.77 }, // ch1 routes
+  { amp: .55, freq: 2.0, form: 0, x: -3.2, y: 0, z: 9,  scale: .95, cols: C('#5ef2ff', '#b56cff', '#ff5ec8'), bloom: 0.91 }, // ch2 deep thinking
+  { amp: .32, freq: 1.3, form: 2, x: 3.2, y: .3, z: 11, scale: .9,  cols: C('#5ef2ff', '#b56cff', '#ffd66b'), bloom: 0.80 },// ch3 performance
+  { amp: .2,  freq: 1.0, form: 3, x: -3.2, y: 0, z: 10, scale: .85, cols: C('#3b82ff', '#b56cff', '#ff5ec8'), bloom: 0.70 }, // ch4 tiers
+  { amp: .42, freq: 3.2, form: 0, x: 3.2, y: 0,  z: 10, scale: .85, cols: C('#ff5ec8', '#b56cff', '#ffd66b'), bloom: 0.77 }, // ch5 personality drift
+  { amp: .3,  freq: 1.6, form: 1, x: 0, y: -1.8, z: 12, scale: .8,  cols: C('#b56cff', '#5ef2ff', '#ff5ec8'), bloom: 0.73 },// ch6 compare
+  { amp: .26, freq: 1.2, form: 3, x: 3.2, y: 0,  z: 10, scale: .85, cols: C('#5fffb0', '#ffd66b', '#ff7a59'), bloom: 0.80 },// ch7 formula
+  { amp: .35, freq: 1.5, form: 2, x: -3.2, y: 0, z: 10, scale: .85, cols: C('#5ef2ff', '#ff5ec8', '#b56cff'), bloom: 0.77 }, // ch8 students
+  { amp: .14, freq: .9,  form: 4, x: 3.2, y: 0,  z: 10, scale: .85, cols: C('#5ef2ff', '#b56cff', '#5fffb0'), bloom: 0.70 }, // ch9 trust
+  { amp: .6,  freq: 1.4, form: 4, x: 0, y: 0,    z: 8.5, scale: 1.25, cols: C('#5fffb0', '#5ef2ff', '#ff5ec8'), bloom: 1.05 } // conclusion
 ];
 if (isMobile) SCENES.forEach(s => { s.x = 0; s.y = s.y || 0; s.z += 3; });
 
 let current = 0, currentForm = 0;
 const target = { ...SCENES[0] };
-const live = { amp: .3, freq: 1.1, x: SCENES[0].x, y: 0, z: 9, scale: 1.15, bloom: 1.2 };
+const live = { amp: .3, freq: 1.1, x: SCENES[0].x, y: 0, z: 9, scale: 1.15, bloom: 0.84 };
 const colLive = SCENES[0].cols.map(c => c.clone());
 
 function morphTo(form) {
@@ -264,7 +265,8 @@ window.addEventListener('scene:change', e => {
 });
 
 /* external hooks from widgets (e.g. TEST-TIME COMPUTE slider) */
-let ampBoost = 0;
+let ampBoost = 0, dimTarget = 1, dimLive = 1;
+window.addEventListener('scene:dim', e => { dimTarget = e.detail.value; });
 window.addEventListener('scene:think', e => { ampBoost = e.detail.value; });
 
 /* ---------- Input ---------- */
@@ -308,6 +310,8 @@ function tick() {
   coreUniforms.uColB.value.copy(colLive[1]);
   coreUniforms.uColC.value.copy(colLive[2]);
   coreUniforms.uPulse.value *= 0.96;
+  dimLive += (dimTarget - dimLive) * k;
+  coreUniforms.uDim.value = dimLive;
 
   pUniforms.uTime.value = t;
   pUniforms.uMix.value = Math.min(1, pUniforms.uMix.value + dt * 0.45);
